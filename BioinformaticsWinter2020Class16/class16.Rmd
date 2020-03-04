@@ -1,0 +1,117 @@
+---
+title: "Network Analysis"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Coronavirus (and HW)
+
+Here we analyze infection data for the 2019 novel Coronavirus COVID-19 (2019-nCoV) epidemic. The raw data is pulled from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository.
+
+A CSV file is available here https://github.com/RamiKrispin/coronavirus-csv
+
+```{r}
+url <- "https://tinyurl.com/COVID-2019"
+virus <- read.csv(url)
+
+tail(virus)
+```
+
+> Q1. How many total cases around the world?
+
+```{r}
+total <- sum(virus$cases)
+total
+```
+
+> Q2. How many deaths linked to infected cases have there been?
+
+```{r}
+table(virus$type)
+inds <- virus$type == "death"
+virus[inds, ]
+```
+
+```{r}
+totaldeaths <- sum(virus[inds, "cases"])
+totaldeaths
+```
+
+
+> Q3. What is the overall dealth rate?
+
+```{r}
+round(totaldeaths/total * 100, 2)
+```
+
+
+> Q4. What is the death rate in Mainland China?
+
+```{r}
+totalchina <- virus$Country.Region == "Mainland China"
+tc<- sum(virus[totalchina, "cases"])
+
+chinadeath <- virus$type == "death" & virus$Country.Region == "Mainland China"
+cd<- sum(virus[chinadeath, "cases" ])
+
+round(cd/tc * 100, 2)
+
+```
+
+
+> Q5. What is the death rate in Italy, Iran, and the US?
+
+```{r}
+#Italy
+
+totalitaly <- virus$Country.Region == "Italy"
+ti<- sum(virus[totalitaly, "cases"])
+
+italydeath <- virus$type == "death" & virus$Country.Region == "Italy"
+id<- sum(virus[italydeath, "cases" ])
+
+round(id/ti * 100, 2)
+```
+
+```{r}
+#Iran
+
+totaliran <- virus$Country.Region == "Iran"
+tir<- sum(virus[totaliran, "cases"])
+
+irandeath <- virus$type == "death" & virus$Country.Region == "Iran"
+ird<- sum(virus[irandeath, "cases" ])
+
+round(ird/tir * 100, 2)
+```
+
+```{r}
+#US
+
+totalUS <- virus$Country.Region == "US"
+tUS<- sum(virus[totalUS, "cases"])
+
+USdeath <- virus$type == "death" & virus$Country.Region == "US"
+USd<- sum(virus[USdeath, "cases" ])
+
+round(USd/tUS * 100, 2)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
