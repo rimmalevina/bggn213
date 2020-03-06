@@ -3,8 +3,6 @@ title: "Class8"
 author: "Rimma Levina"
 date: "2/5/2020"
 output:
-  word_document: default
-  pdf_document: default
   html_document: default
 ---
 
