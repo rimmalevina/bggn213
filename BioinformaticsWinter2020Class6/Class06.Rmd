@@ -1,0 +1,258 @@
+---
+title: 'Class 6: R Functions'
+author: "Rimma Levina"
+date: "1/24/2020"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+This is regular text that does not need # like before like in an R script
+
+## This is a level 2 heading
+
+## This is a level 3 heading
+**BOLD** will make whatever is between the asterisk bold once you press KNIT (word, pdf)
+*Will* make things italics
+
+List w bullets (needs returns)
+
+- 1
+- 2
+- 3
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+``` {} anything between this will be read as code, called a code chunk, press insert up there and chose the kind of code you want to work w:
+press play button to run code -->
+``` {r}
+plot(1:5, col = "blue", type = "o")
+```
+the code will be in the document 
+shortcut: option command i:
+
+```{r}
+x <- 1:10
+```
+
+``` {python} tells the computer what type of code it needs to read
+
+
+```{r cars}
+summary(cars)
+```
+here is my analysis of your new data. It looks ok, the mean of your data is `r mean(x)` <-- this is code , could also be
+`python mean(x)` when you knit it it runs and prints the answer to that code
+
+There are templates that can help you format what you want your document to look like, class website is created in here
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+Lets insert a code chunk with the shortcut `Option-CMD-i`
+
+```{r}
+read.table("test1.txt")
+```
+
+```{r}
+x <- read.table("test1.txt")
+x
+```
+separated by commas, so use read. csv = comma separated values 
+our you could use read.table and say sep = ","
+```{r}
+x <- read.csv("test1.txt")
+x
+```
+
+
+```{r}
+y <- read.table("test2.txt", header = TRUE, sep = "$")
+y
+```
+
+```{r}
+z <- read.table("test3.txt")
+z
+```
+
+
+## OUr first function
+This is an example function named `add` with input `x` and `y`
+
+```{r}
+add <- function(x,y=1) {
+  #sum the input x and y
+  x + y
+}
+```
+
+Lets use it
+
+```{r}
+add(4)
+```
+
+```{r}
+add(5,6)
+#here you define y
+```
+
+go crazy
+
+```{r}
+add(x=c(3,6,1), 4)
+```
+
+
+Rescale function
+
+```{r}
+rescale <- function(x) {
+  rng <-range(x, na.rm = TRUE)  
+  (x - rng[1]) / (rng[2] - rng[1])
+}
+
+```
+
+Test this function
+
+```{r}
+rescale(c(1:10))
+```
+
+```{r}
+rescale(c(1:10, NA))
+```
+
+even though there is a missing value, we took care of that by using na.rm=TRUE
+```{r}
+rescale(c(1:10, NA))
+```
+
+
+
+## Rescale exercise 3
+
+```{r}
+rescale3 <- function(x, na.rm=TRUE, plot=FALSE) {
+ if(na.rm) {
+ rng <-range(x, na.rm=na.rm)
+ } else {
+ rng <-range(x)
+ }
+ print("Hello")
+ answer <- (x - rng[1]) / (rng[2] - rng[1])
+ print("Please don't sing again!")
+ if(plot) {
+ plot(answer, typ="b", lwd=4)
+ }
+ print("I can see it in ...")
+}
+```
+
+## Working with the bio3d package
+
+
+To use the functions form any package we have installed we use the `library()` function to load it
+
+```{r}
+library(bio3d)
+```
+
+
+```{r}
+library(bio3d)
+s1 <- read.pdb("4AKE") # kinase with drug
+s2 <- read.pdb("1AKE") # kinase no drug
+s3 <- read.pdb("1E4Y") # kinase with drug
+s1.chainA <- trim.pdb(s1, chain="A", elety="CA")
+s2.chainA <- trim.pdb(s2, chain="A", elety="CA")
+s3.chainA <- trim.pdb(s3, chain="A", elety="CA")
+s1.b <- s1.chainA$atom$b
+s2.b <- s2.chainA$atom$b
+s3.b <- s3.chainA$atom$b
+plotb3(s1.b, sse=s1.chainA, typ="l", ylab="Bfactor")
+plotb3(s2.b, sse=s2.chainA, typ="l", ylab="Bfactor")
+plotb3(s3.b, sse=s3.chainA, typ="l", ylab="Bfactor")
+```
+
+```{r}  
+plotb3(s1.b, sse=s1.chainA, typ="l", ylab="Bfactor") #putting all graphs into 1
+points(s2.b, col = "blue", typ = "l")
+points(s3.b, col = "red", typ = "l")
+```
+
+
+
+
+
+
+
+```{r}
+hc <- hclust( dist( rbind(s1.b, s2.b, s3.b) ) )
+plot(hc)
+```
+
+
+```{r}
+s1 <- read.pdb("4AKE") # kinase with drug
+s1
+```
+
+```{r}
+?read.pdb
+```
+
+```{r}
+class(s1)
+```
+
+```{r}
+str(s1) #structure
+```
+
+
+```{r}
+s1$seqres
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

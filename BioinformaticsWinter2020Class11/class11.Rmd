@@ -8,3 +8,126 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## PDB Statistics
+
+```{r}
+stats <- read.csv("Data Export Summary.csv", row.names = 1)
+stats #when you visualize it from the environment tab, you might want to rename the columns
+```
+
+Q. What percentage of structures are solved by X-Ray and Electron Microscopy?
+
+```{r}
+ans <- round((stats$Total / sum(stats$Total))*100, 2) # gives you the calculation for every row
+names(ans) <- rownames(stats)
+ans
+```
+
+Q. What proportion of structures are protein?
+
+```{r}
+prop <- round(sum(stats$Proteins/sum(stats$Total)), 2)
+prop
+```
+
+
+## Section 2: Using bio3d package to analyze protein structure data
+
+Q. Type HIV in the PDB website search box on the home page and determine how many HIV-1 protease structures are in the current PDB?
+
+Use the bio3d package from CRAN. 
+
+```{r}
+library(bio3d)
+
+pdb <- read.pdb("1hsg")
+pdb
+```
+
+Adenylate kinase structures from the PDB for analysis
+
+```{r}
+library(bio3d)
+aa <- get.seq("1ake_A")
+aa
+```
+
+
+```{r}
+hits <- NULL
+hits$pdb.id <- c('1AKE_A','4X8M_A','6S36_A','6RZE_A','4X8H_A',
+                 '3HPR_A','1E4V_A','5EJE_A','1E4Y_A','3X2S_A',
+                 '6HAP_A','6HAM_A','4K46_A','4NP6_A','3GMT_A',
+                 '4PZL_A')
+```
+
+Download and parse these structures
+
+```{r}
+library(bio3d)
+#Download related PDB files
+files <- get.pdb(hits$pdb.id, path = "pdbs", split = TRUE, gzip = TRUE)
+```
+
+
+Align and superimpose structures
+
+```{r}
+# Align related PDBs
+pdbs <- pdbaln(files, fit = TRUE, exefile = "msa")
+```
+
+```{r}
+# Vector containing PDB codes for figure axis
+ids <- basename.pdb(pdbs$id)
+
+# Draw schematic alignment
+plot(pdbs, labels=ids)
+```
+
+
+```{r}
+library(bio3d.view)
+library(rgl)
+view(pdbs) 
+
+rglwidget(elementId=" tmp")
+```
+
+```{r}
+anno <- pdb.annotate(ids)
+unique(anno$source)
+```
+
+```{r}
+pc.xray <- pca(pdbs)
+plot(pc.xray)
+```
+```{r}
+# Calculate RMSD
+rd <- rmsd(pdbs)
+
+# Structure-based clustering
+hc.rd <- hclust(dist(rd))
+grps.rd <- cutree(hc.rd, k=3)
+
+plot(pc.xray, 1:2, col="grey50", bg=grps.rd, pch=21, cex=1)
+```
+
+```{r}
+#Plotting results with ggplot2
+library(ggplot2)
+library(ggrepel)
+
+df <- data.frame(x=pc.xray$z[,1], y=pc.xray$z[,2])
+col <- as.factor(grps.rd)
+
+p <- ggplot(df, aes(x, y)) +
+ geom_point(aes(col=col), size=2) +
+ xlab("PC1") +
+ ylab("PC2") +
+ scale_color_discrete(name="Clusters") +
+ geom_text_repel(aes(label=ids))
+p
+
+```
+

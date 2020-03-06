@@ -1,0 +1,90 @@
+---
+title: "Genomics I"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Read sample genotypes data from ENSEMBLE
+
+We downloaded genotype data from ENSEMBLE on the MXL Mexican Ancestry in LA, CA dataset
+
+What proportion of this data are G/G, etc?
+
+```{r}
+mxl <- read.csv("373531-SampleGenotypes-Homo_sapiens_Variation_Sample_rs8067378.csv")
+mxl
+```
+
+We want to look at the second column that contains the genotype information
+
+```{r}
+table(mxl$Genotype..forward.strand.)
+```
+
+## RNA-Seq result analysis for different genotypes of this SNP
+
+```{r}
+expr <- read.table("rs8067378_ENSG00000172057.6.txt")
+expr
+```
+
+```{r}
+expr[expr$geno == "G/G",]$exp
+summary(expr[expr$geno == "G/G",]$exp)
+```
+
+```{r}
+summary(expr[expr$geno == "A/G",]$exp)
+```
+
+```{r}
+summary(expr[expr$geno == "A/A",]$exp)
+```
+
+
+```{r}
+hist(expr[expr$geno == "G/G",]$exp) #not great for visualization
+```
+
+##Try a box plot
+
+We will use the boxplot function and the input data will be **expr**. How do we draw a useful plot?
+
+```{r}
+boxplot(exp ~ geno, data=expr, notch=TRUE)
+```
+
+How many samples are we looking at?
+
+```{r}
+nrow(expr)
+```
+
+
+
+```{r}
+boxplot(expr[expr$geno == "G/G",]$exp, expr[expr$geno == "A/G",]$exp, expr[expr$geno == "A/A",]$exp)
+```
+
+
+
+Overall, the pipeline we went through today: FASTQ -> QC -> Mapping -> Counting -> Differential expression 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
