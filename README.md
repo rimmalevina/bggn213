@@ -8,7 +8,7 @@ This is my classwork from [BGGN-213 Winter quarter 2020](https://bioboot.github.
 - Class 08: [Introduction to machine learning for Bioinformatics 1](https://github.com/rimmalevina/bggn213/blob/master/Bioinformatics%20Winter2020%20Class%208/Class-8.md)
 - Class 09: Unsupervised learning mini-project
 - Class 10: Find a gene assignment (Part 1)
-- Class 11: [Structural Bioinformatics (Part 1)](
+- Class 11: [Structural Bioinformatics (Part 1)](https://github.com/rimmalevina/bggn213/blob/master/BioinformaticsWinter2020Class11/class11.md)
 - Class 12: [Bioinformatics in drug discovery and design](https://github.com/rimmalevina/bggn213/blob/master/BioinformaticsWinter2020class12/Class12.md)
 - Class 13: [Genome informatics and high throughput sequencing (Part 1)](https://github.com/rimmalevina/bggn213/blob/master/BioinformaticsWinter2020Class13/Class13.md)
 - Class 14: [Transcriptomics and the analysis of RNA-Seq data](https://github.com/rimmalevina/bggn213/blob/master/BioinformaticsWinter2020Class14/Class14.md)
