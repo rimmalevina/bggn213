@@ -6,7 +6,7 @@ This is my classwork from [BGGN-213 Winter quarter 2020](https://bioboot.github.
 - Class 06: [Why, when and how of writing your own R functions](https://github.com/rimmalevina/bggn213/blob/master/BioinformaticsWinter2020Class6/Class06.md)
 - Class 07: [Guest Lecture: Epigenetics and 3D genome organization](https://bioboot.github.io/bggn213_W20/class-material/LectureSlides-01-29-2020-FerhatAy.pdf)
 - Class 08: [Introduction to machine learning for Bioinformatics 1](https://github.com/rimmalevina/bggn213/blob/master/Bioinformatics%20Winter2020%20Class%208/Class-8.md)
-- Class 09: Unsupervised learning mini-project
+- Class 09: [Unsupervised learning mini-project](https://github.com/rimmalevina/bggn213/blob/master/BioinformaticsWinter2020Class9/Class9.md)
 - Class 10: Find a gene assignment (Part 1)
 - Class 11: [Structural Bioinformatics (Part 1)](https://github.com/rimmalevina/bggn213/blob/master/BioinformaticsWinter2020Class11/class11.md)
 - Class 12: [Bioinformatics in drug discovery and design](https://github.com/rimmalevina/bggn213/blob/master/BioinformaticsWinter2020class12/Class12.md)
