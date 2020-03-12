@@ -43,14 +43,16 @@ control
 Now access the count columns 
 
 ```{r}
-counts[, control$id] #we've created a path to get all the control rows, which correspond to the COLUMNS in the actual counts data set
+# counts[, control$id]  I commented out the code because it made the markdown file too large
+
+#we've created a path to get all the control rows, which correspond to the COLUMNS in the actual counts data set
 ```
 
 Now find the mean value for each row (aka each gene)
 
 ```{r}
 control.mean <- rowSums(counts[, control$id]) / nrow(control) # aka 4 but you want to make this applicable to other data sets
-control.mean
+head(control.mean)
 ```
 
 Now access the treated rows and make a new vector with their means
@@ -58,9 +60,8 @@ Now access the treated rows and make a new vector with their means
 ```{r}
 treated <- metadata[metadata$dex=="treated",]
 treated
-counts[, treated$id]
+# counts[, treated$id] commenting out because it makes the markdown file too large
 treated.mean <- rowSums(counts[, treated$id]) / nrow(treated)
-treated.mean
 ```
 
 Lets put these together for ease of use
