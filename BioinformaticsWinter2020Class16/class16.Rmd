@@ -21,7 +21,7 @@ tail(virus)
 ```
 
 ```{r}
-library(dplyr) #functions in dplyr:
+#library(dplyr) #functions in dplyr:
 # group_by
 # summarise
 # arrange
@@ -151,9 +151,9 @@ setVisualStyle("Marquee")
 Lets save an image from cytoscape and include it in this document
 
 ```{r}
-fig <- exportImage(filename="demo_marquee", type="png", height=350)
+# fig <- exportImage(filename="demo_marquee", type="png", height=350)
 
-knitr::include_graphics("./demo_marquee.png")
+# knitr::include_graphics("./demo_marquee.png")
 ```
 
 ```{r}
@@ -209,13 +209,13 @@ plot(cb, y=g, vertex.label=NA,  vertex.size=3)
 
 ```{r}
 # pipe writing
-dress(wash(wake("barry"))) # hard to read when things get really long
+# dress(wash(wake("barry"))) # hard to read when things get really long
 
-%>% # can help visually separate the function, applies function to the x you specified in the first line
+# %>%  can help visually separate the function, applies function to the x you specified in the first line
 
-wake("barry") %>% 
-  wash %>% 
-  dress %>% 
+# wake("barry") %>% 
+#  wash %>% 
+#  dress %>% 
   
 ```
 
