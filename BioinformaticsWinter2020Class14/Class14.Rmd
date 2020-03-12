@@ -67,7 +67,7 @@ Lets put these together for ease of use
 
 ```{r}
 mycounts <- data.frame(control.mean, treated.mean)
-mycounts
+head(mycounts)
 ```
 
 Lets plot and see what it looks like
@@ -106,7 +106,7 @@ Now actually find zero rows in our mycounts object
 ```{r}
 to.rm <- unique(which(mycounts == 0, arr.ind = TRUE)[, "row"])
 newcounts <- mycounts[-to.rm,] # gives you all the data without the zeros
-newcounts
+head(newcounts)
 nrow(newcounts)
 ```
 
