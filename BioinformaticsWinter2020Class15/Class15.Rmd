@@ -50,7 +50,7 @@ Note that there are genes that have zero counts in all samples (ie. columns), we
 First identify the zero sum rows, then exclude them 
 ```{r}
 validcountData <- countData[ rowSums(countData) != 0, ] #!= means not equals
-validcountData
+head(validcountData)
 ```
 
 ##Running DESeq2
