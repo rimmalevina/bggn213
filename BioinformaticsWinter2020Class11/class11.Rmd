@@ -3,6 +3,9 @@ title: "Structural Bioinformatics (pt.1)"
 output: github_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 ## PDB Statistics
 
@@ -87,7 +90,7 @@ library(bio3d.view)
 library(rgl)
 view(pdbs) 
 
-rglwidget(elementId=" tmp")
+# rglwidget(elementId=" tmp") cant make a markdown file with this because it procudes an html output
 ```
 
 ```{r}
