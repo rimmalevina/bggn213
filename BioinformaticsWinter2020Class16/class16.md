@@ -739,7 +739,7 @@ createNetworkFromIgraph(g,"myGraph")
     ## Applying preferred layout...
 
     ## networkSUID 
-    ##        4926
+    ##        9772
 
 Switching Styles
 
@@ -753,10 +753,17 @@ setVisualStyle("Marquee")
 Lets save an image from cytoscape and include it in this document
 
 ``` r
-# fig <- exportImage(filename="demo_marquee", type="png", height=350)
-
-# knitr::include_graphics("./demo_marquee.png")
+fig <- exportImage(filename="demo_marquee", type="png", height=350)
 ```
+
+    ## Warning: This file already exists. A Cytoscape popup 
+    ##                 will be generated to confirm overwrite.
+
+``` r
+knitr::include_graphics("./demo_marquee.png")
+```
+
+<img src="./demo_marquee.png" width="655" />
 
 ``` r
 plot(g)
@@ -813,7 +820,7 @@ createNetworkFromIgraph(g,"myIgraph")
     ## Applying preferred layout...
 
     ## networkSUID 
-    ##        4954
+    ##        9800
 
 Network community detection
 

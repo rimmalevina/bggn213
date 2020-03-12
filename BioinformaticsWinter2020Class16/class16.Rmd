@@ -151,9 +151,9 @@ setVisualStyle("Marquee")
 Lets save an image from cytoscape and include it in this document
 
 ```{r}
-# fig <- exportImage(filename="demo_marquee", type="png", height=350)
+fig <- exportImage(filename="demo_marquee", type="png", height=350)
 
-# knitr::include_graphics("./demo_marquee.png")
+knitr::include_graphics("./demo_marquee.png")
 ```
 
 ```{r}
